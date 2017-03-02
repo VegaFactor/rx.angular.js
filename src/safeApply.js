@@ -11,17 +11,17 @@
       })
       .tap(
         function (data){
-          ($scope.$$phase || $scope.$root.$$phase) ?
+          ($scope.$$phase || $scope.$root && $scope.$root.$$phase) ?
             onNext(data) :
             $scope.$apply(function () { onNext(data); });
         },
         function (error){
-          ($scope.$$phase || $scope.$root.$$phase) ?
+          ($scope.$$phase || $scope.$root && $scope.$root.$$phase) ?
             onError(error) :
             $scope.$apply(function () { onError(error); });
         },
         function (){
-          ($scope.$$phase || $scope.$root.$$phase) ?
+          ($scope.$$phase || $scope.$root && $scope.$root.$$phase) ?
             onComplete() :
             $scope.$apply(function () { onComplete(); });
         });
